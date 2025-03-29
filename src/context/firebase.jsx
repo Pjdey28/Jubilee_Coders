@@ -51,7 +51,7 @@ export const FirebaseProvider = ({ children }) => {
     } catch (error) {
       throw error;
     }
-  };
+  };  
 
   const onAuthStateChanged = (callback) => auth.onAuthStateChanged(callback);
 
