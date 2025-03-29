@@ -53,12 +53,18 @@ export const FirebaseProvider = ({ children }) => {
     }
   };
 
+  const onAuthStateChanged = (callback) => auth.onAuthStateChanged(callback);
+
+  const signOut = () => auth.signOut();
+
   const value = {
     user,
     signUpWithEmailAndPassword,
     loginWithEmailAndPassword,
     updateUserProfile,
-    signInWithGoogle
+    signInWithGoogle,
+    onAuthStateChanged,
+    signOut
   };
 
   return (

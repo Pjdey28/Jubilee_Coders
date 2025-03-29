@@ -1,12 +1,13 @@
 import { Mail, Lock, User, ArrowRight, Eye, EyeOff } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFirebase } from "../context/firebase.jsx";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 
 const SignUp = () => {
   const firebase = useFirebase();
   const navigate = useNavigate();
-
+  const [currentUser, setCurrentUser] = useState(null);
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -16,6 +17,16 @@ const SignUp = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Fixed auth state listener
+  useEffect(() => {
+    // Access auth directly from firebase
+    const unsubscribe = firebase.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+    });
+
+    return () => unsubscribe();
+  }, [firebase]);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -34,7 +45,7 @@ const SignUp = () => {
       if (isLogin) {
         // Sign in
         await firebase.loginWithEmailAndPassword(formData.email, formData.password);
-        navigate("/dashboard"); // Adjust the route as needed
+        toast.success(`Welcome back!`);
       } else {
         // Sign up
         const userCredential = await firebase.signUpWithEmailAndPassword(
@@ -47,10 +58,17 @@ const SignUp = () => {
           displayName: formData.fullName,
         });
 
-        navigate("/dashboard"); // Adjust the route as needed
+        toast.success(`Welcome to our platform, ${formData.fullName}!`);
       }
+      // Reset form after successful submission
+      setFormData({
+        fullName: "",
+        email: "",
+        password: "",
+      });
     } catch (err) {
       setError(err.message);
+      toast.error('Authentication failed');
     } finally {
       setLoading(false);
     }
@@ -59,17 +77,49 @@ const SignUp = () => {
   const handleGoogleSignIn = async () => {
     try {
       setLoading(true);
-      await firebase.signInWithGoogle();
-      navigate("/dashboard");
+      const result = await firebase.signInWithGoogle();
+      toast.success(`Welcome ${result.user.displayName}!`);
     } catch (err) {
       setError(err.message);
+      toast.error('Google sign-in failed');
     } finally {
       setLoading(false);
     }
   };
 
+  // Fix handleSignOut
+  const handleSignOut = async () => {
+    try {
+      await firebase.signOut(); // Direct method call
+      toast.success('Signed out successfully');
+    } catch (err) {
+      console.error('Error signing out:', err);
+      toast.error('Failed to sign out');
+    }
+  };
+
+  if (currentUser) {
+    return (
+      <section className="flex justify-center px-6 lg:px-20 bg-black py-[120px]">
+        <div className="w-full max-w-md">
+          <div className="bg-white rounded-2xl p-8 shadow-2xl text-center">
+            <h2 className="text-2xl font-bold mb-4">Welcome, {currentUser.displayName || 'User'}!</h2>
+            <p className="text-gray-600 mb-6">You are currently signed in</p>
+            <button
+              onClick={handleSignOut}
+              className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              Sign Out
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="flex justify-center px-6 lg:px-20 bg-black py-[120px] ">
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="w-full max-w-7xl">
         <div className="mt-10 flex justify-center">
           <div className="w-full max-w-md">
