@@ -10,7 +10,7 @@ function App() {
         <footer className="mt-20 rounded-t-3xl bg-neutral-200 pt-16 pb-8 px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div className="md:col-span-4">
-              <h3 className="font-bold text-xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+              <h3 className="font-bold text-xl mb-6 bg-clip-text ">
                 Your Brand
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
