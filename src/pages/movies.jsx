@@ -2,7 +2,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [topMovies, setTopMovies] = useState([]);

@@ -1,13 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import { Toaster } from 'react-hot-toast';
-import Faq from "./components/faq";
-import Footer from "./components/footer";
-import HeroPage from "./components/hero-page";
 import Navbar from "./components/navbar";
-import SignUp from "./components/sign-up";
 import Zone from "./components/zone";
-import Movies from "./pages/movies";
-import Books from './pages/Books';
+import Footer from "./components/footer";
+import Books from "./pages/Books";
+import Stories from "./pages/Stories";
+import Movies from "./pages/Movies";
+import Memes from "./pages/Memes"; 
+import ThemePark from "./pages/ThemePark";
+import HeroPage from "./components/hero-page";
+import { Toaster } from 'react-hot-toast';
+import SignUp from "./components/sign-up";
+import Faq from "./components/faq";
 
 function App() {
   return (
@@ -37,6 +40,9 @@ function App() {
         />
         <Route path="/movies" element={<Movies />} />
         <Route path="/books" element={<Books />} />
+        <Route path="/memes" element={<Memes />} />
+        <Route path="/stories" element={<Stories />} />
+        <Route path="/themepark" element={<ThemePark />} />
       </Routes>
       <Footer />
     </div>
