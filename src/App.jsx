@@ -7,6 +7,7 @@ import Navbar from "./components/navbar";
 import SignUp from "./components/sign-up";
 import Zone from "./components/zone";
 import Movies from "./pages/movies";
+import Books from './pages/Books';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           }
         />
         <Route path="/movies" element={<Movies />} />
+        <Route path="/books" element={<Books />} />
       </Routes>
       <Footer />
     </div>
