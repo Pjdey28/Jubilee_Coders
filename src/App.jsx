@@ -11,6 +11,7 @@ import HeroPage from "./components/hero-page";
 import { Toaster } from 'react-hot-toast';
 import SignUp from "./components/sign-up";
 import Faq from "./components/faq";
+import ThemeParkDetails from "./pages/ThemeParkDetails";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/memes" element={<Memes />} />
         <Route path="/stories" element={<Stories />} />
         <Route path="/themepark" element={<ThemePark />} />
+        <Route path="/themepark/:id" element={<ThemeParkDetails />} />
       </Routes>
       <Footer />
     </div>
