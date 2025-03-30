@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/movies.css';
+
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -142,20 +142,90 @@ const Movies = () => {
   };
 
   return (
-    <div className="movies-container min-h-screen bg-gray-900 text-white p-6">
+    <div className="movies-container min-h-100vh bg-black text-white p-6">
       {/* Top Movies Section */}
       <div className="top-movies-section max-w-7xl mx-auto mb-12">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Top 10 Movies</h2>
+          <h2 className="text-2xl font-bold">10 Random Movies</h2>
           <button 
             onClick={handleRefreshTopMovies}
             disabled={moviesLoading}
-            className={`bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-600 transition-colors flex items-center gap-2 ${
-              moviesLoading ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`
+              bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500
+              hover:from-indigo-600 hover:via-blue-600 hover:to-cyan-600
+              px-6 py-3 rounded-xl
+              flex items-center gap-3
+              transform transition-all duration-300 ease-in-out
+              shadow-lg hover:shadow-blue-500/40
+              ${moviesLoading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-102 hover:-translate-y-0.5'}
+            `}
           >
-            <span className={moviesLoading ? 'animate-spin' : ''}>🔄</span>
-            {moviesLoading ? 'Refreshing...' : 'Refresh'}
+            <svg
+              className={`w-5 h-5 text-white ${moviesLoading ? 'animate-spin' : 'animate-none'}`}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 4.75V6.25"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M17.127 6.873L16.127 7.873"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M19.25 12L17.75 12"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M17.127 17.127L16.127 16.127"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12 19.25V17.75"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M7.873 16.127L6.873 17.127"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M4.75 12L6.25 12"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M7.873 7.873L6.873 6.873"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="font-medium text-white tracking-wide">
+              {moviesLoading ? 'Refreshing...' : 'Refresh List'}
+            </span>
           </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -199,16 +269,86 @@ const Movies = () => {
       {/* Top TV Shows Section */}
       <div className="top-shows-section max-w-7xl mx-auto mb-12">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Top 10 TV Shows</h2>
+          <h2 className="text-2xl font-bold">10 Random TV Shows</h2>
           <button 
             onClick={handleRefreshTvShows}
             disabled={showsLoading}
-            className={`bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-600 transition-colors flex items-center gap-2 ${
-              showsLoading ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`
+              bg-gradient-to-r from-indigo-500 via-blue-500 to-cyan-500
+              hover:from-indigo-600 hover:via-blue-600 hover:to-cyan-600
+              px-6 py-3 rounded-xl
+              flex items-center gap-3
+              transform transition-all duration-300 ease-in-out
+              shadow-lg hover:shadow-blue-500/40
+              ${showsLoading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-102 hover:-translate-y-0.5'}
+            `}
           >
-            <span className={showsLoading ? 'animate-spin' : ''}>🔄</span>
-            {showsLoading ? 'Refreshing...' : 'Refresh'}
+            <svg
+              className={`w-5 h-5 text-white ${showsLoading ? 'animate-spin' : 'animate-none'}`}
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 4.75V6.25"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M17.127 6.873L16.127 7.873"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M19.25 12L17.75 12"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M17.127 17.127L16.127 16.127"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12 19.25V17.75"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M7.873 16.127L6.873 17.127"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M4.75 12L6.25 12"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M7.873 7.873L6.873 6.873"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="font-medium text-white tracking-wide">
+              {showsLoading ? 'Refreshing...' : 'Refresh List'}
+            </span>
           </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
